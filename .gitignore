@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# virtual environment
+.venv/
+
+# datasets
+data/
+
+# outputs
+results/
+saved_models/
+
+# system
+.DS_Store
+Thumbs.db
