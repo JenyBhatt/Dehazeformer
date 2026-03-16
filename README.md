@@ -328,3 +328,17 @@ files.download("/content/dehazed_outputs.zip")
 ```
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License](https://img.shields.io/github/license/JenyBhatt/Dehazeformer)
+
+>**Note:** This repository uses the DehazeFormer-B model (a compressed variant) based on the original [DehazeFormer by IDKiro](https://github.com/IDKiro/DehazeFormer). Inference is faster and easier while retaining high-quality results.
+<br/>
+
+```bibtex
+@article{song2023vision,
+  title={Vision Transformers for Single Image Dehazing},
+  author={Song, Yuda and He, Zhuqing and Qian, Hui and Du, Xin},
+  journal={IEEE Transactions on Image Processing},
+  volume={32},
+  pages={1927--1941},
+  year={2023},
+  publisher={IEEE}
+}
