@@ -100,3 +100,5 @@ The zip file dehazed_outputs.zip will contain all dehazed images.
 from google.colab import files
 files.download("/content/dehazed_outputs.zip")
 ```
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![License](https://img.shields.io/github/license/JenyBhatt/Dehazeformer)
