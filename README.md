@@ -86,7 +86,7 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
     --exp indoor \
     --weights /content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth
 ```
-
+You can download the pre-trained weights <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/finetuned_phase3_highres_ema_24.39.pth">here</a>
 ## 5. Export / Download Outputs
 ### After inference, zip your results for download:
 ```bash
