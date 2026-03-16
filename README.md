@@ -134,9 +134,9 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 torch.backends.cudnn.benchmark     = True
 torch.backends.cudnn.deterministic = False
 
-print(f"🚀 Using device: {device}")
-print(f"📐 TTA configs: {len(TTA_CONFIGS)} × 8 transforms = {len(TTA_CONFIGS) * 8} predictions per image")
-print(f"⚡ Patch batch size: {PATCH_BATCH_SIZE}")
+print(f"Using device: {device}")
+print(f"TTA configs: {len(TTA_CONFIGS)} × 8 transforms = {len(TTA_CONFIGS) * 8} predictions per image")
+print(f"Patch batch size: {PATCH_BATCH_SIZE}")
 
 
 # =========================
@@ -150,7 +150,7 @@ sd    = ckpt.get('state_dict', ckpt)
 sd    = OrderedDict({k[7:] if k.startswith('module.') else k: v for k, v in sd.items()})
 model.load_state_dict(sd, strict=False)
 model.to(device).eval()
-print("✅ Model loaded!\n")
+print("Model loaded!\n")
 
 
 # =========================
@@ -288,7 +288,7 @@ to_tensor = transforms.ToTensor()
 to_pil    = transforms.ToPILImage()
 
 print(f"Running Advanced TTA on {len(test_files)} images...")
-print(f"📂 Outputs will be saved to: {OUTPUT_DIR}\n")
+print(f"Outputs will be saved to: {OUTPUT_DIR}\n")
 
 with torch.no_grad():
     for file_path in tqdm(test_files, desc="Dehazing", unit="img"):
@@ -306,7 +306,7 @@ with torch.no_grad():
         final_tensor = torch.mean(torch.stack(all_preds), dim=0).clamp(0, 1)
         to_pil(final_tensor.squeeze(0).cpu()).save(os.path.join(OUTPUT_DIR, filename))
 
-print(f"\n✅ Done! {len(test_files)} dehazed images saved to:\n   {OUTPUT_DIR}")
+print(f"\nDone. {len(test_files)} dehazed images saved to:\n   {OUTPUT_DIR}")
 ```
 You can download the pre-trained weights <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/finetuned_phase3_highres_ema_24.39.pth">here</a>
 ## 5. Export / Download Outputs
