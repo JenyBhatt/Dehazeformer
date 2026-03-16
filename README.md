@@ -10,8 +10,12 @@
 
 -Easily integrate into research pipelines or automated image restoration tasks
 
-Here, we are incorporating the model, dehazeformer-b of the model sub-part.
+Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of the original Dehazeformer architecture. The architecture is pictorially framed as below:
+<br/>
+<img src = "https://github.com/JenyBhatt/Dehazeformer/blob/main/images/architecture.jpeg" alt="architecture" width = "500">
+<br/>
 
+### **Sample Output**
 <table>
   <tr>
     <td>
