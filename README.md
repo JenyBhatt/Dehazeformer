@@ -11,6 +11,20 @@
 -Easily integrate into research pipelines or automated image restoration tasks
 
 Here, we are incorporating the model, dehazeformer-b of the model sub-part.
+
+<table>
+  <tr>
+    <td>
+      <p align="center">Input</p>
+      <img src="images/32_NTHazy.png" alt="Input Image" width="300"/>
+    </td>
+    <td>
+      <p align="center">Output</p>
+      <img src="images/sample_op.png" alt="Output Image" width="300"/>
+    </td>
+  </tr>
+</table>
+
 ## 1. Installation
 ```bash
 git clone https://github.com/JenyBhatt/Dehazeformer.git
@@ -81,7 +95,7 @@ shutil.make_archive("/content/dehazed_outputs", 'zip', "/content/Dehazeformer/sa
 ```
 The zip file dehazed_outputs.zip will contain all dehazed images.
 
-## In Colab, download with:
+### In Colab, download with:
 ```bash
 from google.colab import files
 files.download("/content/dehazed_outputs.zip")
