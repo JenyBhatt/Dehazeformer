@@ -70,9 +70,7 @@ Dehazeformer/
 │  └─ finetuned_phase3_highres_ema_24.39.pth
 ```
 ## Weights/Model
-You can choose any of the weights as listed : 
-- <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/finetuned_phase3_highres_ema_24.39.pth">**finetuned_phase3_highres_ema_24.39.pth**</a>
-(25.368dB)
+You can download any of the weights as listed <a href="https://drive.google.com/drive/folders/1_sO30A9-vmtcD1b9dzz1yY0b7ixg0pEN?usp=sharing">here</a>
  <br/> 
 
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
