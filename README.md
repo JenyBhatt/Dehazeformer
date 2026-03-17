@@ -19,8 +19,8 @@ Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of 
 </table>
 
 *Performance*
-- Baseline inference: ~24.3 dB PSNR  
-- TTA (test2.py): ~24.78 dB PSNR  
+- Baseline inference: ~24.78 dB PSNR  
+- TTA (test2.py): ~25.08 dB PSNR  
 
 ## 1. Installation
 ```bash
