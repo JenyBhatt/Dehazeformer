@@ -2,7 +2,7 @@
 
 **DehazeFormer** is a transformer-based architecture for single image dehazing, designed to:
 
--Handle high-resolution images via tiled inference
+-Handle high-resolution images via overlapping tiled (grid) inference to prevent GPU memory overflow and reduce boundary artifacts
 
 -Improve robustness via multi-scale (0.9, 1.0, 1.1) and 8-fold geometric test-time augmentation (total 24 augmentations)
 
@@ -10,7 +10,6 @@
 
 -Easily integrate into research pipelines or automated image restoration tasks
 
--Handle high-resolution images via overlapping tiled (grid) inference to avoid GPU memory overflow and boundary artifacts
 
 Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of the original Dehazeformer architecture. The architecture is pictorially framed as below:
 <br/>
@@ -31,6 +30,10 @@ Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of 
   </tr>
 </table>
 
+*Performance*
+- Baseline inference: ~24.3 dB PSNR  
+- TTA (test2.py): ~24.37 dB PSNR  
+- TTA + Grid (test3.py): ~24.38 dB PSNR  
 ## 1. Installation
 ```bash
 git clone https://github.com/JenyBhatt/Dehazeformer.git
@@ -77,6 +80,17 @@ Dehazeformer/
 ├─ weights/
 │  └─ finetuned_phase3_highres_ema_24.39.pth
 ```
+## Weights
+
+- **finetuned_phase3_highres_ema_24.39.pth**
+  - Higher PSNR (better quantitative performance)
+  - Recommended for benchmarks / leaderboard submissions
+
+- **finetuned_phase4_ssim.pth**
+  - Better perceptual quality (sharper and visually pleasing results)
+  - Recommended for qualitative evaluation
+
+> Make sure to update the `--weights` path or the variable inside test scripts accordingly.
 ## 4. Run Inference
 ### VsCode
 ```bash
@@ -102,7 +116,9 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
 ```bash
 !python test3.py
 ```
-You can download the pre-trained weights <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
+You can download the pre-trained weights and select any of the mentioned <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
+<br/>
+It is recommended to update the weights file path accordingly.
 ## 5. Export / Download Outputs
 ### After inference, zip your results for download:
 ```bash
