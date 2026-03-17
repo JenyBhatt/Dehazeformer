@@ -72,9 +72,9 @@ Dehazeformer/
 ## Weights/Model
 You can choose any of the weights as listed : 
 - <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/finetuned_phase3_highres_ema_24.39.pth">**finetuned_phase3_highres_ema_24.39.pth**</a>
-Model results
+(24.39dB)
 - <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/dehazing_best_model%20(4).pth">**finetuned_phase4_ssim.pth**</a>
-Model results
+(25.368dB)
  <br/> 
 
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
