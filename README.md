@@ -69,15 +69,13 @@ Dehazeformer/
 ├─ weights/
 │  └─ finetuned_phase3_highres_ema_24.39.pth
 ```
-## Weights
-
-- **finetuned_phase3_highres_ema_24.39.pth**
-  - Higher PSNR (better quantitative performance)
-  - Recommended for benchmarks / leaderboard submissions
-
-- **finetuned_phase4_ssim.pth**
-  - Better perceptual quality (sharper and visually pleasing results)
-  - Recommended for qualitative evaluation
+## Weights/Model
+You can choose any of the weights as listed : 
+- <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/finetuned_phase3_highres_ema_24.39.pth">**finetuned_phase3_highres_ema_24.39.pth**</a>
+Model results
+- <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/dehazing_best_model%20(4).pth">**finetuned_phase4_ssim.pth**</a>
+Model results
+ <br/> 
 
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
 ## 4. Run Inference
@@ -86,6 +84,15 @@ Dehazeformer/
 python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_models --dataset RESIDE-IN --exp indoor
 ```
 ### Google Colab
+**TTA with other configs (24.368dB)** <br/>
+```bash
+!python test2.py
+```
+
+**Note:** The above configuration uses *test-time augmentation (TTA)*, which may increase inference time.
+
+For faster inference, you may use the standard evaluation pipeline without TTA:<br/>
+**Alternative Inference script:**
 ```bash
 !python -m test \
     --model dehazeformer-b \
@@ -94,11 +101,6 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
     --dataset RESIDE-IN \
     --exp indoor \
     --weights /content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth
-```
-**TTA with other configs (24.368dB)** <br/>
-**Alternative inference code for Colab including the TTA test2.py pipeline:**
-```bash
-!python test2.py
 ```
 You can download the pre-trained weights and select any of the mentioned <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
 <br/>
