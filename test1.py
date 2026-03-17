@@ -10,24 +10,25 @@ import numpy as np
 from collections import OrderedDict
 from tqdm import tqdm
 
-# Corrected import for Dehazeformer_B
-from models.dehazeformer import dehazeformer_b as Dehazeformer_B
+from models import *
+
+# =========================
+# SETTINGS
+# =========================
 INPUT_DIR  = "/content/Dehazeformer/data/test"
-MODEL_PATH = "/content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth"
+MODEL_PATH = "/content/Dehazeformer/weights/Dehazing.pth"
 OUTPUT_DIR = "/content/Dehazeformer/saved_models/indoor"
 MODEL_NAME = "dehazeformer_b"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-# SETTINGS
 
 # ── TTA Config ──────────────────────────────────────────────
 # Trained on 256×256 patches — keep patch_size=256 as base.
 # Larger patch sizes will still work but use more VRAM.
 TTA_CONFIGS = [
     # (patch_size, overlap, scale)
-    (512, 0.50, 1.00),   # base config — matches training
-    (512, 0.25, 1.00),   # different overlap
-    (512, 0.50, 0.75),   # downscaled
-    (512, 0.50, 1.25),   # upscaled
+    (256, 0.50, 1.00),   # base config — matches training
+    (256, 0.25, 1.00),   # different overlap
+    (256, 0.50, 0.75),   # downscaled
+    (256, 0.50, 1.25),   # upscaled
 ]
 
 # ── Batch size for patch inference ──────────────────────────
@@ -36,31 +37,36 @@ TTA_CONFIGS = [
 PATCH_BATCH_SIZE = 24
 # ────────────────────────────────────────────────────────────
 
+# =========================
 # Setup
+# =========================
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 torch.backends.cudnn.benchmark     = True
 torch.backends.cudnn.deterministic = False
 
-print(f"Using device: {device}")
-print(f"TTA configs: {len(TTA_CONFIGS)} × 8 transforms = {len(TTA_CONFIGS) * 8} predictions per image")
-print(f"Patch batch size: {PATCH_BATCH_SIZE}")
+print(f"🚀 Using device: {device}")
+print(f"📐 TTA configs: {len(TTA_CONFIGS)} × 8 transforms = {len(TTA_CONFIGS) * 8} predictions per image")
+print(f"⚡ Patch batch size: {PATCH_BATCH_SIZE}")
 
+
+# =========================
 # Load Model
-
+# =========================
 print("⚙️ Loading model weights...")
-# Instantiate the model directly after explicit import
-model = Dehazeformer_B()
+model = eval(MODEL_NAME)()
 ckpt  = torch.load(MODEL_PATH, map_location="cpu")
 sd    = ckpt.get('state_dict', ckpt)
 sd    = OrderedDict({k[7:] if k.startswith('module.') else k: v for k, v in sd.items()})
 model.load_state_dict(sd, strict=False)
 model.to(device).eval()
-print("Model loaded!\n")
+print("✅ Model loaded!\n")
 
+
+# =========================
 # 8-Transform TTA Helpers
-
+# =========================
 def apply_tta(x):
     """Generate 8 geometric augmentations of x."""
     return [
@@ -88,8 +94,9 @@ def inverse_tta(xs):
     ]
 
 
+# =========================
 # Gaussian Window
-
+# =========================
 _gaussian_cache = {}
 
 def get_cached_gaussian(patch_size):
@@ -106,8 +113,9 @@ def get_cached_gaussian(patch_size):
     return _gaussian_cache[patch_size]
 
 
+# =========================
 # Batched Grid Inference
-
+# =========================
 def grid_inference(model, img_tensor, patch_size, overlap):
     """
     Tiled inference with Gaussian blending.
@@ -156,9 +164,9 @@ def grid_inference(model, img_tensor, patch_size, overlap):
     return (output / weights.clamp(min=1e-6))[:, :, :h, :w]
 
 
-
+# =========================
 # Single TTA config
-
+# =========================
 def run_tta_config(model, img_tensor, patch_size, overlap, scale, orig_h, orig_w):
     if scale != 1.0:
         new_h = max(patch_size, int(orig_h * scale) // 8 * 8)
@@ -181,20 +189,20 @@ def run_tta_config(model, img_tensor, patch_size, overlap, scale, orig_h, orig_w
     return pred.clamp(0, 1)
 
 
-
+# =========================
 # Inference Loop
-
+# =========================
 test_files = sorted(glob.glob(os.path.join(INPUT_DIR, '*.*')))
 test_files = [f for f in test_files if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
 to_tensor = transforms.ToTensor()
 to_pil    = transforms.ToPILImage()
 
-print(f"Running Advanced TTA on {len(test_files)} images...")
-print(f"Outputs will be saved to: {OUTPUT_DIR}\n")
+print(f"🚀 Running Advanced TTA on {len(test_files)} images...")
+print(f"📂 Outputs will be saved to: {OUTPUT_DIR}\n")
 
 with torch.no_grad():
-    for file_path in tqdm(test_files, desc="Dehazing", unit="img"):
+    for file_path in tqdm(test_files, desc="🌙 Dehazing", unit="img"):
         filename    = os.path.basename(file_path)
         hazy_tensor = to_tensor(Image.open(file_path).convert('RGB')).unsqueeze(0).to(device)
 
@@ -209,4 +217,4 @@ with torch.no_grad():
         final_tensor = torch.mean(torch.stack(all_preds), dim=0).clamp(0, 1)
         to_pil(final_tensor.squeeze(0).cpu()).save(os.path.join(OUTPUT_DIR, filename))
 
-print(f"\nDone! {len(test_files)} dehazed images saved to:\n   {OUTPUT_DIR}")
+print(f"\n✅ Done! {len(test_files)} dehazed images saved to:\n   {OUTPUT_DIR}")
