@@ -4,18 +4,20 @@
 
 -Handle high-resolution images via tiled inference
 
--Improve robustness via 8-fold geometric test-time augmentation (TTA)
+-Improve robustness via multi-scale (0.9, 1.0, 1.1) and 8-fold geometric test-time augmentation (total 24 augmentations)
 
 -Produce visually clear and perceptually accurate results
 
 -Easily integrate into research pipelines or automated image restoration tasks
+
+-Handle high-resolution images via overlapping tiled (grid) inference to avoid GPU memory overflow and boundary artifacts
 
 Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of the original Dehazeformer architecture. The architecture is pictorially framed as below:
 <br/>
 <img src = "https://github.com/JenyBhatt/Dehazeformer/blob/main/images/architecture.jpeg" alt="architecture" width = "500">
 <br/>
 
-### **Sample Output**
+### **Qualitative Results**
 <table>
   <tr>
     <td>
@@ -100,7 +102,7 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
 ```bash
 !python test3.py
 ```
-You can download the pre-trained weights <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/finetuned_phase3_highres_ema_24.39.pth">here</a>
+You can download the pre-trained weights <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
 ## 5. Export / Download Outputs
 ### After inference, zip your results for download:
 ```bash
@@ -117,7 +119,7 @@ files.download("/content/dehazed_outputs.zip")
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License](https://img.shields.io/github/license/JenyBhatt/Dehazeformer)
 
->**Note:** This repository uses the DehazeFormer-B model (a compressed variant) based on the original [DehazeFormer by IDKiro](https://github.com/IDKiro/DehazeFormer). Inference is faster and easier while retaining high-quality results.
+>**Note:** This repository uses the DehazeFormer-B model (a compressed variant) based on the original [DehazeFormer by IDKiro](https://github.com/IDKiro/DehazeFormer). It is a lightweight and computationally efficient variant of the original Dehazeformer, designed to reduce parameters and inference latency while maintaining competitive dehazing performance.
 <br/>
 
 ```bibtex
