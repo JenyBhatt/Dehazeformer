@@ -83,28 +83,18 @@ You can download any of the weights as listed <a href="https://drive.google.com/
 ```
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
 ## 4. Run Inference
-### Local/VsCode
-```bash
-python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_models --dataset RESIDE-IN --exp indoor
-```
-### Google Colab
+
 **TTA with other configs (24.368dB)** <br/>
 ```bash
-!python test2.py
+!python test1.py
 ```
-
+If you're using this command to run then need to give inputs as args
 **Note:** The above configuration uses *test-time augmentation (TTA)*, which may increase inference time.
 
 For faster inference, you may use the standard evaluation pipeline without TTA:<br/>
 **Alternative Inference script:**
 ```bash
-!python -m test \
-    --model dehazeformer-b \
-    --data_dir /content/Dehazeformer/data/test \
-    --save_dir /content/Dehazeformer/saved_models \
-    --dataset RESIDE-IN \
-    --exp indoor \
-    --weights /content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth
+!python test2.py
 ```
 You can download the pre-trained weights and select any of the mentioned <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
 <br/>
