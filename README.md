@@ -90,11 +90,11 @@ You can download any of the weights as listed <a href="https://drive.google.com/
 ```
 If you're using this command to run then need to give inputs as args
 **Note:** The above configuration uses *test-time augmentation (TTA)*, which may increase inference time.
-## Inference Performance
+### Inference Performance
 
 | PSNR (dB)  | SSIM | LPIPS | Runtime (sec) |  
 |--------------|--------------|----------|------|
-|24.743 | 0.8614 | 0.1652 | ~231/img | 
+|25.082 | 0.8666 | 0.1697 | ~240s/img | 
 
 <br/>
 
@@ -117,6 +117,13 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
     --exp indoor \
     --weights /content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth
 ```
+### Inference Performance
+
+| PSNR (dB)  | SSIM | LPIPS | Runtime (sec) |  
+|--------------|--------------|----------|------|
+|24.743 | 0.8614  | 0.1652 | ~15s/img | 
+
+<br/>
 The weights are available in the pretrained_weights folder.
 <br/>
 It is recommended to update the weights file path accordingly.
