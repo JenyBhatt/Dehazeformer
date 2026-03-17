@@ -93,8 +93,19 @@ If you're using this command to run then need to give inputs as args
 
 For faster inference, you may use the standard evaluation pipeline without TTA:<br/>
 **Alternative Inference script:**
+### VsCode
 ```bash
-!python test2.py
+python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_models --dataset RESIDE-IN --exp indoor
+```
+### Google Colab
+```bash
+!python -m test \
+    --model dehazeformer-b \
+    --data_dir /content/Dehazeformer/data/test \
+    --save_dir /content/Dehazeformer/saved_models \
+    --dataset RESIDE-IN \
+    --exp indoor \
+    --weights /content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth
 ```
 The weights are available in the pretrained_weights folder.
 <br/>
