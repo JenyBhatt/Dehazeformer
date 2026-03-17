@@ -11,6 +11,7 @@ from collections import OrderedDict
 from tqdm import tqdm
 
 from models import *
+from models.dehazeformer import dehazeformer_b as Dehazeformer_B
 
 # =========================
 # SETTINGS
