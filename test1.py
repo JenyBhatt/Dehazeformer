@@ -17,7 +17,7 @@ from models.dehazeformer import dehazeformer_b as Dehazeformer_B
 # SETTINGS
 # =========================
 INPUT_DIR  = "/content/Dehazeformer/data/test"
-MODEL_PATH = "/content/Dehazeformer/pretrained_weights/Dehazing.pth"
+MODEL_PATH = "/content/Dehazeformer/weights/Dehazing.pth"
 OUTPUT_DIR = "/content/Dehazeformer/saved_models/indoor"
 MODEL_NAME = "dehazeformer_b"
 
