@@ -6,7 +6,7 @@ from tqdm import tqdm
 import glob
 
 from models import *
-from models.dehazeformer import dehazeformer_b as DehazeFormer_B
+from models.dehazeformer import dehazeformer_b
 
 # =========================
 # SETTINGS
