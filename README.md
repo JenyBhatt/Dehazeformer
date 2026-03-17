@@ -20,7 +20,7 @@ Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of 
 
 *Performance*
 - Baseline inference: ~24.3 dB PSNR  
-- TTA (test2.py): ~24.37 dB PSNR  
+- TTA (test2.py): ~24.78 dB PSNR  
 
 ## 1. Installation
 ```bash
@@ -84,13 +84,23 @@ You can download any of the weights as listed <a href="https://drive.google.com/
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
 ## 4. Run Inference
 
-**TTA with other configs (24.368dB)** <br/>
+**TTA with other configs {PSNR-24.743dB LPIPS-0.1652 SSIM-0.8614}** <br/>
 ```bash
 !python test1.py
 ```
 If you're using this command to run then need to give inputs as args
 **Note:** The above configuration uses *test-time augmentation (TTA)*, which may increase inference time.
+## Inference Performance
 
+| PSNR (dB)  | SSIM | LPIPS | Runtime (sec) |  
+|--------------|--------------|----------|------|
+|24.743 | 0.8614 | 0.1652 | ~231/img | 
+
+<br/>
+
+**Note:**  
+- The **TTA configuration** uses multiple augmentations and scales → improves quality but increases runtime.  
+- The **standard evaluation** is faster and suitable for quick testing.
 For faster inference, you may use the standard evaluation pipeline without TTA:<br/>
 **Alternative Inference script:**
 ### VsCode
