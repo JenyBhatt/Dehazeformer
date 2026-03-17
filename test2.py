@@ -11,7 +11,12 @@ from models.dehazeformer import dehazeformer_b
 from utils.common import AverageMeter, write_img, chw_to_hwc
 from datasets.loader import PairLoader
 from models import *
-
+from models.dehazeformer import dehazeformer_b 
+INPUT_DIR  = "/content/Dehazeformer/data/test"
+MODEL_PATH = "/content/Dehazeformer/weights/Dehazeformer.pth"
+OUTPUT_DIR = "/content/Dehazeformer/saved_models/indoor"
+MODEL_NAME = "dehazeformer_b"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', default='dehazeformer-b', type=str, help='model name')
