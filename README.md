@@ -96,7 +96,7 @@ For faster inference, you may use the standard evaluation pipeline without TTA:<
 ```bash
 !python test2.py
 ```
-You can download the pre-trained weights and select any of the mentioned <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
+The weights are available in the pretrained_weights folder.
 <br/>
 It is recommended to update the weights file path accordingly.
 
