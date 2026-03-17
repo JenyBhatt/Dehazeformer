@@ -1,20 +1,8 @@
 # **Overview**
 
-**DehazeFormer** is a transformer-based architecture for single image dehazing, designed to:
+**DehazeFormer** is a transformer-based architecture for single image dehazing.
 
--Handle high-resolution images via overlapping tiled (grid) inference to prevent GPU memory overflow and reduce boundary artifacts
-
--Improve robustness via multi-scale (0.9, 1.0, 1.1) and 8-fold geometric test-time augmentation (total 24 augmentations)
-
--Produce visually clear and perceptually accurate results
-
--Easily integrate into research pipelines or automated image restoration tasks
-
-
-Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of the original Dehazeformer architecture. The architecture is pictorially framed as below:
-<br/>
-<img src = "https://github.com/JenyBhatt/Dehazeformer/blob/main/images/architecture.jpeg" alt="architecture" width = "500">
-<br/>
+Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of the original Dehazeformer architecture.
 
 ### **Qualitative Results**
 <table>
@@ -33,7 +21,7 @@ Here, we are incorporating the model, *Dehazeformer-B* ,a compressed version of 
 *Performance*
 - Baseline inference: ~24.3 dB PSNR  
 - TTA (test2.py): ~24.37 dB PSNR  
-- TTA + Grid (test3.py): ~24.38 dB PSNR  
+
 ## 1. Installation
 ```bash
 git clone https://github.com/JenyBhatt/Dehazeformer.git
@@ -44,6 +32,7 @@ cd Dehazeformer
 ```bash
 # PyTorch (GPU recommended, CUDA 12.1)
 pip install --quiet torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
 
 # Other required libraries
 pip install --quiet opencv-python timm pytorch-msssim tqdm tensorboard tensorboardX
@@ -58,7 +47,7 @@ pip install --quiet opencv-python timm pytorch-msssim tqdm tensorboard tensorboa
 
 ## 3. Dataset Preparation
 
-### Organize your images(VsCode):
+### Organize your images(Local/VsCode):
 ```bash
 Dehazeformer/
 ├─ data/
@@ -92,7 +81,7 @@ Dehazeformer/
 
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
 ## 4. Run Inference
-### VsCode
+### Local/VsCode
 ```bash
 python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_models --dataset RESIDE-IN --exp indoor
 ```
@@ -110,11 +99,6 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
 **Alternative inference code for Colab including the tta test2.py pipeline:**
 ```bash
 !python test2.py
-```
-**TTA with grid inference and other configs (24.386dB)** <br/>
-**Alternative inference code for Colab including the test3.py pipeline:**
-```bash
-!python test3.py
 ```
 You can download the pre-trained weights and select any of the mentioned <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
 <br/>
