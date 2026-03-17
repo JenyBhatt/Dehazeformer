@@ -90,10 +90,15 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
     --exp indoor \
     --weights /content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth
 ```
-**By running with TTA and other configs, we can slightly improve the psnr.** <br/>
-**Alternative inference code for Colab including the tta pipeline:**
+**TTA with other configs (24.368dB)** <br/>
+**Alternative inference code for Colab including the tta test2.py pipeline:**
 ```bash
 !python test2.py
+```
+**TTA with grid inference and other configs (24.386dB)** <br/>
+**Alternative inference code for Colab including the test3.py pipeline:**
+```bash
+!python test3.py
 ```
 You can download the pre-trained weights <a href="https://github.com/JenyBhatt/Dehazeformer/blob/main/pretrained_weights/finetuned_phase3_highres_ema_24.39.pth">here</a>
 ## 5. Export / Download Outputs
