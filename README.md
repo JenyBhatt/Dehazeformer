@@ -96,26 +96,14 @@ python -m test --model dehazeformer-b --data_dir ./data --save_dir ./saved_model
     --weights /content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth
 ```
 **TTA with other configs (24.368dB)** <br/>
-**Alternative inference code for Colab including the tta test2.py pipeline:**
+**Alternative inference code for Colab including the TTA test2.py pipeline:**
 ```bash
 !python test2.py
 ```
 You can download the pre-trained weights and select any of the mentioned <a href="https://github.com/JenyBhatt/Dehazeformer/tree/main/pretrained_weights">here</a>
 <br/>
 It is recommended to update the weights file path accordingly.
-## 5. Export / Download Outputs
-### After inference, zip your results for download:
-```bash
-import shutil
-shutil.make_archive("/content/dehazed_outputs", 'zip', "/content/Dehazeformer/saved_models/indoor")
-```
-The zip file dehazed_outputs.zip will contain all dehazed images.
 
-### In Colab, download with:
-```bash
-from google.colab import files
-files.download("/content/dehazed_outputs.zip")
-```
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License](https://img.shields.io/github/license/JenyBhatt/Dehazeformer)
 
