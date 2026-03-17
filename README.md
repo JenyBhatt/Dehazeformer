@@ -72,7 +72,15 @@ Dehazeformer/
 ## Weights/Model
 You can download any of the weights as listed <a href="https://drive.google.com/drive/folders/1_sO30A9-vmtcD1b9dzz1yY0b7ixg0pEN?usp=sharing">here</a>
  <br/> 
+## Unzip .pth files
+```bash
+!pip install gdown
+!mkdir -p /content/Dehazeformer/weights
+!gdown --id 148C5cc-6Y76KfPCE8iJuD3qJKJF-1qTP -O weights.zip
+!unzip weights.zip -d /content/Dehazeformer/weights/
 
+!ls /content/Dehazeformer/weights/
+```
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
 ## 4. Run Inference
 ### Local/VsCode
