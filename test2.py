@@ -12,7 +12,11 @@ from tqdm import tqdm
 
 # Corrected import for Dehazeformer_B
 from models.dehazeformer import dehazeformer_b as Dehazeformer_B
-
+INPUT_DIR  = "/content/Dehazeformer/data/test"
+MODEL_PATH = "/content/Dehazeformer/weights/finetuned_phase3_highres_ema_24.39.pth"
+OUTPUT_DIR = "/content/Dehazeformer/saved_models/indoor"
+MODEL_NAME = "dehazeformer_b"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 # SETTINGS
 
 # ── TTA Config ──────────────────────────────────────────────
