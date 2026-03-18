@@ -84,7 +84,7 @@ You can download any of the weights as listed <a href="https://drive.google.com/
 > Make sure to update the `--weights` path or the variable inside test scripts accordingly.
 ## 4. Run Inference
 
-**TTA with other configs {PSNR-24.743dB LPIPS-0.1652 SSIM-0.8614}** <br/>
+**TTA with other configs:** <br/>
 ```bash
 !python test1.py
 ```
